@@ -69,6 +69,31 @@ public class MyLinkedList {
         System.out.println();
     }
 
+    /**
+     * 选择排序算法
+     * @return
+     */
+    public ListNode linkSort(){
+        ListNode curNode = head;
+        while (curNode != null){
+            ListNode nextNode = curNode.next;
+            while (nextNode != null){
+                if (curNode.val > nextNode.val){
+                    int temp = curNode.val;
+                    curNode.val = nextNode.val;
+                    nextNode.val = temp;
+                }
+                nextNode = nextNode.next;
+            }
+            curNode = curNode.next;
+        }
+        return head;
+    }
+
+    /**
+     * 构造函数
+     * @param head
+     */
     public MyLinkedList(ListNode head) {
         this.head = head;
     }
