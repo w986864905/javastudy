@@ -1,5 +1,7 @@
 package Leetcode.common;
 
+import java.util.Hashtable;
+
 /**
  * 链表常见算法
  */
@@ -88,6 +90,25 @@ public class MyLinkedList {
             curNode = curNode.next;
         }
         return head;
+    }
+
+    /**
+     * 去掉重复元素
+     * 调用hashtable.containsKey()来判断重复结点
+     */
+    public void distinctLink(){
+        ListNode temp = head;
+        ListNode pre = null;
+        Hashtable<Integer,Integer> hb = new Hashtable<Integer, Integer>();
+        while (temp != null){
+            if (hb.containsKey(temp.val)){
+                pre.next = temp.next;
+            }else {
+                hb.put(temp.val,1);
+                pre = temp;
+            }
+            temp = temp.next;
+        }
     }
 
     /**
