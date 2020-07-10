@@ -2,6 +2,13 @@ package Leetcode.day20200709;
 
 public class FindMedian {
 
+    public static void main(String[] args) {
+        int[] nums1 = {1,2};
+        int[] nums2 = {3,4};
+        double res = findMedianSortedArrays(nums1,nums2);
+        System.out.println(res);
+    }
+
     public static double findMedianSortedArrays(int[] nums1, int[] nums2) {
         int n = nums1.length + nums2.length;
         int mid1 = 0, mid2 = 0;
