@@ -5,7 +5,7 @@ import java.util.Arrays;
 /**
  * 两数之和
  */
-public class twonum {
+public class TwoNum {
 
 
     public static void main(String[] args) {

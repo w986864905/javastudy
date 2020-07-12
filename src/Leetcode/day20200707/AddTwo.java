@@ -6,7 +6,7 @@ import Leetcode.common.MyLinkedList;
 /**
  * 两数相加
  */
-public class addTwo {
+public class AddTwo {
     public static void main(String[] args) {
         ListNode l1 = new ListNode(2);
         l1.next=new ListNode(4);
