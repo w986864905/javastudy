@@ -7,5 +7,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
+    <orderEntry type="library" name="org.projectlombok:lombok:1.18.12" level="project" />
+    <orderEntry type="library" name="org.springframework:spring-core:5.2.11.RELEASE" level="project" />
   </component>
 </module>
