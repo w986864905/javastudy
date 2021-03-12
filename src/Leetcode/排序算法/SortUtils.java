@@ -75,24 +75,73 @@ public class SortUtils {
         quickSort(nums,0,nums.length);
     }
 
-    public static void heapSort(int []arr){
+    public static void heapSort(int[] nums){
         //1.构建大顶堆
-        for(int i=arr.length/2-1;i>=0;i--){
+        for(int i=nums.length/2-1;i>=0;i--){
             //从第一个非叶子结点从下至上，从右至左调整结构
-            adjustHeap(arr,i,arr.length);
+            adjustHeap(nums,i,nums.length);
         }
         //2.调整堆结构+交换堆顶元素与末尾元素
-        for(int j=arr.length-1;j>0;j--){
+        for(int j=nums.length-1;j>0;j--){
             //将堆顶元素与末尾元素进行交换
-            swap(arr,0,j);
+            swap(nums,0,j);
             //重新对堆进行调整
-            adjustHeap(arr,0,j);
+            adjustHeap(nums,0,j);
         }
+    }
+
+    public static void countSort(int[] nums){
+        int n = nums.length;
+        //先定义两个变量用来存放数组中的最大值和最小值
+        int min = nums[0];
+        int max = nums[0];
+        for (int i = 1; i < n; i++){
+            if (max < nums[i]){
+                max = nums[i];
+            }
+            if (nums[i] < min){
+                min = nums[i];
+            }
+        }
+        //定义一个长度为len的数组，这样做是为了防止数组中的最小值为1000，最大值为1010
+        //这样创建一个大小为10的数组就行了，不用创建大小为1010的数组，浪费空间
+        int len = max - min + 1;
+        //哪个数字出现了一次，就把它的数字作为下标存起来，假如1006出现了一次，就把temp[1006-1000]加一
+        int[] temp = new int[len];
+        for (int value : nums) {
+            temp[value - min]++;
+        }
+        int k = 0;
+        //对temp进行遍历，temp[i]的值就是i出现的次数，加入temp[5]=3，说明(5+1000)出现了3次
+        for (int i = 0; i < len; i++) {
+            for (int j = temp[i]; j > 0; j--){
+                nums[k] = i + min;
+                k++;
+            }
+        }
+    }
+
+    public static void bucketSort(int[] nums){
+        int n = nums.length;
+        //先定义两个变量用来存放数组中的最大值和最小值
+        int min = nums[0];
+        int max = nums[0];
+        for (int i = 1; i < n; i++){
+            if (max < nums[i]){
+                max = nums[i];
+            }
+            if (nums[i] < min){
+                min = nums[i];
+            }
+        }
+        //建立桶buckets
+        //将数组放入桶中
+        //对桶进行排序并输出到新的数组temp中
+        //替换原数组nums
     }
 
     public static void main(String[] args) {
         int[] nums = {1,3,5,2,6};
-
         heapSort(nums);
         System.out.println(Arrays.toString(nums));
     }
@@ -164,28 +213,28 @@ public class SortUtils {
 
     /**
      * 调整大顶堆（仅是调整过程，建立在大顶堆已构建的基础上）
-     * @param arr
+     * @param nums
      * @param i
      * @param length
      */
-    private static void adjustHeap(int []arr,int i,int length){
+    private static void adjustHeap(int []nums,int i,int length){
         //先取出当前元素i
-        int temp = arr[i];
+        int temp = nums[i];
         //从i结点的左子结点开始，也就是2i+1处开始
         for(int k=i*2+1;k<length;k=k*2+1){
             //如果左子结点小于右子结点，k指向右子结点
-            if(k+1<length && arr[k]<arr[k+1]){
+            if(k+1<length && nums[k]<nums[k+1]){
                 k++;
             }
             //如果子节点大于父节点，将子节点值赋给父节点（不用进行交换）
-            if(arr[k] >temp){
-                arr[i] = arr[k];
+            if(nums[k] >temp){
+                nums[i] = nums[k];
                 i = k;
             }else{
                 break;
             }
         }
         //将temp值放到最终的位置
-        arr[i] = temp;
+        nums[i] = temp;
     }
 }
