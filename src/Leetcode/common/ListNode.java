@@ -1,5 +1,9 @@
 package Leetcode.common;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
 public class ListNode {
     public int val;
     public ListNode next;
@@ -7,24 +11,18 @@ public class ListNode {
     }
     public ListNode(int val) {
         this.val = val;
+        this.next = null;
     }
     public ListNode(int val, ListNode next) {
         this.val = val;
         this.next = next;
     }
     public static String printListNode(ListNode head){
-        StringBuilder sbb = new StringBuilder();
-        ListNode head1 = head;
-        sbb.append("[");
+        List<String> sb = new ArrayList<>();
         while (head!=null){
-            sbb.append(head.val);
-            sbb.append(",");
+            sb.add(head.val+"");
             head = head.next;
         }
-        if (head1 != null){
-            sbb.deleteCharAt(sbb.lastIndexOf(","));
-        }
-        sbb.append("]");
-        return sbb.toString();
+        return sb.stream().collect(Collectors.joining(",","[","]"));
     }
 }

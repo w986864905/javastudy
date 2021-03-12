@@ -1,5 +1,5 @@
 package Leetcode.KMP;
-import Leetcode.day20210111.Solution;
+import Leetcode.everyday.day20210111.Solution;
 
 public class Main {
 	//实测  KMP 与 indexOf
