@@ -1,7 +1,6 @@
 package Leetcode.排序算法;
 
-import java.util.Arrays;
-import java.util.Collection;
+import java.util.*;
 
 /**
  * @ClassName SortUtils
@@ -134,16 +133,74 @@ public class SortUtils {
                 min = nums[i];
             }
         }
-        //建立桶buckets
+        int minBuckets = min/10;
+        int size = max/10-min/10+1;
+        //建立桶buckets 以10个为一组
+        ArrayList<ArrayList<Integer>> buckets = new ArrayList<>(size);
+        for (int i = 0; i < size; i++) {
+            buckets.add(new ArrayList<>());
+        }
         //将数组放入桶中
+        for (int value:nums){
+            buckets.get(value/10-minBuckets).add(value);
+        }
         //对桶进行排序并输出到新的数组temp中
-        //替换原数组nums
+        int index = 0;
+        for (ArrayList<Integer> bucket:buckets){
+            if (bucket.size()>0){
+                Collections.sort(bucket);
+                for (int num:bucket) {
+                    nums[index++] = num;
+                }
+            }
+        }
+    }
+
+    /**
+     * 基数排序
+     * @param arr 数组
+     * @param digit 进制
+     * @param maxLen 位数
+     */
+    public static void radixSort(int[] arr, int digit, int maxLen) {
+        int[] count = new int[digit];
+        int[] temp = new int[arr.length];
+        int divide = 1;
+
+        for(int i = 0; i < maxLen; i++) {
+            //每次分配之前，先把arr数值的记录拷贝一份给temp数组
+            System.arraycopy(arr, 0, temp, 0, arr.length);
+            //然后对桶子进行清空
+            Arrays.fill(count, 0);
+
+            //把记录分配到桶子中
+            for(int j = 0; j < arr.length; j++) {
+                //取出下标为j的记录的第i个关键字的值
+                int tempKey = (temp[j]/divide)%digit;
+                count[tempKey]++;
+            }
+
+            for(int j = 1; j < digit; j++) {
+                count[j] += count[j-1];
+            }
+
+            for(int j = arr.length-1; j >= 0; j--) {
+                int tempKey = (temp[j]/divide)%digit;
+                count[tempKey]--;
+                arr[count[tempKey]] = temp[j];
+            }
+
+            divide = digit * divide;
+        }
     }
 
     public static void main(String[] args) {
-        int[] nums = {1,3,5,2,6};
-        heapSort(nums);
-        System.out.println(Arrays.toString(nums));
+//        int[] nums = {1,3,5,2,6,10,15,13,12,23,35,26,33};
+//        radixSort(nums,10,2);
+//        System.out.println(Arrays.toString(nums));
+        String text = "AA10(代码表)";
+        System.out.println(text.substring(0,text.indexOf('(')));
+        System.out.println(text.substring(text.indexOf('(')+1,text.length()-1));
     }
 
     private static void swap(int[] nums, int a, int b) {
