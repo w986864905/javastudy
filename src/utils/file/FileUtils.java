@@ -1,4 +1,6 @@
-package file;
+package utils.file;
+
+import study1.list;
 
 import java.io.*;
 import java.util.ArrayList;
@@ -23,15 +25,11 @@ public class FileUtils {
         File file = new File(path);
         List<String> resList = new ArrayList<>();
         try{
-            BufferedReader br = new BufferedReader(new FileReader(file));
-            //构造一个BufferedReader类来读取文件
-            String s = null;
+            BufferedReader br = new BufferedReader(new FileReader(file));//构造一个BufferedReader类来读取文件
+            String s;
             while((s = br.readLine())!=null){
                 //使用readLine方法，一次读一行
-                String[] list =  s.split("\\s{1,}");
-                for (int i = 0;i < list.length; i++){
-                    resList.add(list[i]);
-                }
+                resList.add(s);
             }
             br.close();
         }catch(Exception e){
@@ -55,8 +53,7 @@ public class FileUtils {
         List<String> resList = new ArrayList<>();
         try{
             FileWriter fw =  new FileWriter(file);
-            BufferedWriter bw = new BufferedWriter(fw);
-            //构造一个BufferedReader类来读取文件
+            BufferedWriter bw = new BufferedWriter(fw);//构造一个BufferedReader类来读取文件
             for (String item : list) {
                 bw.write(item+"\n");
             }
@@ -156,6 +153,36 @@ public class FileUtils {
         } catch (IOException o) {
             o.printStackTrace();
         }
+    }
+    /**
+     * 通过本地文件访问json并读取
+     *
+     * @param path：json文件路径
+     * @return：json文件的内容
+     */
+    public static String ReadFile(String path) {
+        StringBuffer laststr = new StringBuffer();
+        File file = new File(path);// 打开文件
+        BufferedReader reader = null;
+        try {
+            FileInputStream in = new FileInputStream(file);
+            reader = new BufferedReader(new InputStreamReader(in, "UTF-8"));// 读取文件
+            String tempString = null;
+            while ((tempString = reader.readLine()) != null) {
+                laststr = laststr.append(tempString);
+            }
+            reader.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException el) {
+                }
+            }
+        }
+        return laststr.toString();
     }
 
 }

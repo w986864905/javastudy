@@ -77,10 +77,6 @@ public class ArraysUtil {
         if (null == array || array.length <= 1){
             return null;
         }
-        List<String> list = new ArrayList<>();
-        for (int[] arr : array) {
-            list.add(ArraysUtil.toString(arr));
-        }
-        return list.stream().collect(Collectors.joining(",","{","}"));
+        return Arrays.stream(array).map(ArraysUtil::toString).collect(Collectors.joining(",","{","}"));
     }
 }

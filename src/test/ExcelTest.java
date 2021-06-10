@@ -1,13 +1,17 @@
 package test;
 
+import cn.hutool.core.lang.PatternPool;
+import cn.hutool.core.util.StrUtil;
 import com.spire.xls.*;
 import com.spire.xls.collections.WorksheetsCollection;
+import file.FileUtils;
+import utils.file.ExcelUtil;
 
-import java.awt.*;
 import java.io.File;
-import java.nio.charset.StandardCharsets;
 import java.util.*;
 import java.util.List;
+import java.util.concurrent.atomic.AtomicInteger;
+import java.util.regex.Pattern;
 
 /**
  * @ClassName ExcelTest
@@ -29,13 +33,59 @@ public class ExcelTest {
     }};
 
     public static void main(String[] args) {
+
         addLicense();
         // String[] paths = {"E:\\项目相关文档\\enc-pap-wuhu\\接入源表\\接入源表_0409_NEW"};
         //copyExcelToSheets(dirFilePaths("E:\\项目相关文档\\enc-pap-wuhu\\接入源表\\接入源表_0409_3\\分系统表字段_接入"));
         //addHyperlinkReturn(dirFilePaths("E:\\项目相关文档\\enc-pap-wuhu\\接入源表\\接入源表_0409_3\\分系统表字段_标准"));
         //cellStyle(dirFilePaths("E:\\项目相关文档\\enc-pap-wuhu\\接入源表\\接入源表_0409_3\\分系统表字段_标准"));
         //matchColumn();
-        mergeExcelToSheets();
+        //mergeExcelToSheets();
+        exportSql();
+//        List<String> result = ExcelUtil.readColumn("C:\\Users\\wangpinfeng\\Desktop\\接入.xlsx",3,1,569);
+//        System.out.println(result);
+    }
+
+    private static void exportSql(){
+        //创建一个新的Excel文档
+        Workbook indexBook = new Workbook();
+        //载入文档
+        indexBook.loadFromFile("C:\\Users\\wangpinfeng\\Desktop\\表相关sql\\新表.xlsx");
+
+        for (int j = 0; j < indexBook.getWorksheets().size();j++){
+            Worksheet targetSheet = indexBook.getWorksheets().get(j);
+            List<String> list1  = new ArrayList<>();
+            list1.add("set parquet_file_size = 64M;");
+            list1.add(StrUtil.format("CREATE TABLE if not exists standard.std_{} (",targetSheet.getName().toLowerCase()));
+            String format = "  {} {} COMMENT '{}',";
+            String lastFormat = "  {} {} COMMENT '{}'";
+            String list2format = ",t.{}";
+            String list2FirstFormat = "t.{}";
+            List<String> list2  = new ArrayList<>();
+            list2.add(StrUtil.format("insert overwrite standard.std_{}",targetSheet.getName().toLowerCase()));
+            list2.add("select");
+            for (int k = 0; k < targetSheet.getLastRow(); k++){
+
+                String columnEn = StrUtil.trim(targetSheet.getRange().get(k + 1, 1).getText());
+                String columnCn = StrUtil.trim(targetSheet.getRange().get(k + 1, 3).getText());
+                String columnType = StrUtil.trim(targetSheet.getRange().get(k + 1, 2).getText().toUpperCase());
+                if (k == 0){
+                    list2.add(StrUtil.format(list2FirstFormat,columnEn.toLowerCase()));
+                }else {
+                    list2.add(StrUtil.format(list2format,columnEn.toLowerCase()));
+                }
+                if (k == targetSheet.getLastRow()-1){
+                    list1.add(StrUtil.format(lastFormat,columnEn.toLowerCase(),columnType,columnCn));
+                }else {
+                    list1.add(StrUtil.format(format,columnEn.toLowerCase(),columnType,columnCn));
+                }
+            }
+            list1.add(")");
+            list2.add(StrUtil.format("from  originald.{}  t",targetSheet.getName().toLowerCase()));
+            list1.addAll(list2);
+            FileUtils.ListToFile(list1,StrUtil.format("E:\\人相关表sql\\wpf（新）\\\\{}.sql",targetSheet.getName().toLowerCase()));
+        }
+
     }
 
     /**这里是仅仅查询当前路径下的所有文件夹、文件并且存放其路径到文件数组
@@ -290,6 +340,5 @@ public class ExcelTest {
         }
         workbook.saveToFile("E:\\项目相关文档\\enc-pap-wuhu\\接入源表\\接入源表\\Result.xlsx", ExcelVersion.Version2013);
     }
-
 
 }
