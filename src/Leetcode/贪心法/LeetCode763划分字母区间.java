@@ -1,7 +1,5 @@
 package Leetcode.贪心法;
 
-import study1.list;
-
 import java.util.*;
 
 /**

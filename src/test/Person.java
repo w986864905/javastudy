@@ -1,5 +1,6 @@
 package test;
 
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -8,7 +9,16 @@ import lombok.Data;
  * @Description
  */
 @Data
+@AllArgsConstructor
 public class Person {
     private String name;
     private Integer age;
+
+    @Override
+    public String toString() {
+        return "Person{" +
+                "name='" + name + '\'' +
+                ", age=" + age +
+                '}';
+    }
 }

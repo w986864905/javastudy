@@ -1,7 +1,5 @@
 package utils.file;
 
-import study1.list;
-
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;

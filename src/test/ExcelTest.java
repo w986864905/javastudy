@@ -1,17 +1,13 @@
 package test;
 
-import cn.hutool.core.lang.PatternPool;
 import cn.hutool.core.util.StrUtil;
 import com.spire.xls.*;
 import com.spire.xls.collections.WorksheetsCollection;
-import file.FileUtils;
-import utils.file.ExcelUtil;
+import utils.file.FileUtils;
 
 import java.io.File;
 import java.util.*;
 import java.util.List;
-import java.util.concurrent.atomic.AtomicInteger;
-import java.util.regex.Pattern;
 
 /**
  * @ClassName ExcelTest

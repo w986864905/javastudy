@@ -1,12 +1,8 @@
 package Leetcode.common;
 
 import com.sun.istack.internal.NotNull;
-import org.springframework.util.StringUtils;
-import study1.list;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 import java.util.stream.Collectors;
 
 /**

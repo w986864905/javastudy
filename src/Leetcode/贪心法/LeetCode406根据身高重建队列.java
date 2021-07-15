@@ -1,7 +1,6 @@
 package Leetcode.贪心法;
 
 import Leetcode.common.ArraysUtil;
-import study1.list;
 
 import java.util.*;
 

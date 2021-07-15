@@ -20,7 +20,7 @@ import java.util.regex.Pattern;
  * @Version 1.1.
  */
 public class RegexTest {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ClassNotFoundException {
 //        String str = "·";
 //        String pattern = "[^a-zA-Z0-9\\u4e00-\\u9fa5.·？?（）()]+";
 //
@@ -33,7 +33,12 @@ public class RegexTest {
 //        String regex = "[^\\u4e00-\\u9fa5]+";
 //        Pattern pattern = Pattern.compile(regex);
 //        System.out.println(pattern.matcher("encdata.serialsource.dataAccess_1279_base-unified-access1279").matches());
-        System.out.println("皖12313".replaceAll("[^A-Z0-9]+",""));
+        //System.out.println("皖12313".replaceAll("[^A-Z0-9]+",""));
+
+
+        Class.forName("test.Super");
+        System.out.println(Super.i);
+
     }
     private static String trimb(String target,String replace){
         Set<Character> charSet = new HashSet<>(Arrays.asList(Convert.toCharArray(replace)));

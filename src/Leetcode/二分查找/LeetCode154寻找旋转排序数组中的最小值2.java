@@ -13,6 +13,7 @@ package Leetcode.二分查找;
  * @Version 1.1.
  */
 public class LeetCode154寻找旋转排序数组中的最小值2 {
+
     public static int findMin(int[] nums) {
         int low = 0;
         int high = nums.length - 1;
