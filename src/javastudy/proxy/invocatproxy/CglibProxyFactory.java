@@ -16,4 +16,8 @@ public class CglibProxyFactory {
         // 创建代理类
         return enhancer.create();
     }
+    public static void main(String[] args) {
+        SmsService smsService = (SmsService) CglibProxyFactory.getProxy(SmsService.class);
+        smsService.send("java");
+    }
 }

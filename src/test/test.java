@@ -11,6 +11,15 @@ import java.util.*;
  * @Description
  */
 public class test {
+
+    public static void hello(String name) {
+        Date date = new Date();
+        long number = 200L;
+        double salary = 6000.0;
+        int count = 1;
+
+    }
+
     public static List<String> txt2String(String files){
         File file = new File(files);
         List<String> resList = new ArrayList<>();
@@ -151,6 +160,7 @@ public class test {
         }
 
     }
+
 
 
 }

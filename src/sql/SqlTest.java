@@ -25,15 +25,14 @@ import java.util.*;
 public class SqlTest {
     public static void main(String[] args) throws Exception {
         String sql = "SELECT name,addr as address,sum(num) as total_num FROM theme.table as t where t.user_id = '123' and pk='234' or ps='345' and wk='456' order by uid asc";
-        CCJSqlParser sqlParser = new CCJSqlParser(sql);
-        Select select = sqlParser.Select();
-        System.out.println(SqlParserUtils.select_where(sql));
-//        Map<String,String> reqMap = new LinkedHashMap<String,String>(){{
-//            put("${uid}","1234");
-//            put("${ps}","1234");
-//            //put("${ps}","1234");
-//        }};
-//        System.out.println(buildSql("SELECT name,addr as address,sum(num) as total_num FROM theme.table as t where t.user_id = ${uid} and pk=${pk} or ps=${ps} and wk=${wk} order by uid asc",reqMap));
+//        CCJSqlParser sqlParser = new CCJSqlParser(sql);
+//        Select select = sqlParser.Select();
+//        System.out.println(SqlParserUtils.select_where(sql));
+        Map<String,String> reqMap = new LinkedHashMap<String,String>(){{
+            put("${uid}","1234");
+            put("${ps}","1234");
+        }};
+        System.out.println(buildSql("SELECT name,addr as address,sum(num) as total_num FROM theme.table as t where t.user_id = ${uid} and pk=${pk} or ps=${ps} and wk=${wk} order by uid asc",reqMap));
         //System.out.println(SQLUtils.format("SELECT name,addr as address,sum(num) as total_num FROM theme.table t where t.user_id = ${uid} and (pk=${pk} or ps = ${ps})","mysql"));
         //System.out.println(StrUtil.replace(SqlUtil.formatSql(SQLUtils.format("SELECT name,addr as address,sum(num) as total_num FROM theme.table as t where t.user_id = ${uid} and (pk=${pk} or ps = ${ps})","mysql")), "\n"," ").replaceAll(" +"," "));
     }
