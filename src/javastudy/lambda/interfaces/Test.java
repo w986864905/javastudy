@@ -1,4 +1,4 @@
-package javastudy.Lambda.interfaces;
+package javastudy.lambda.interfaces;
 
 /**
  * @author wangpinfeng on 2020/7/19.

@@ -26,10 +26,16 @@ public class CollectionTest {
 //        map1.put("0","1");
 //        map1.put("5","1");
 //        System.out.println(tableSizeFor(5));
-        int[] array1 = {1,2,3,4,5};
-        int[] array2 = array1;
-        array2[0] = 2;
-        System.out.println(Arrays.toString(array1));
+//        int[] array1 = {1,2,3,4,5};
+//        int[] array2 = array1;
+//        array2[0] = 2;
+//        System.out.println(Arrays.toString(array1));
+        TreeMap<Integer,String> treeMap = new TreeMap<>();
+        treeMap.put(4,"wh");
+        treeMap.put(3,"wh");
+        treeMap.put(2,"zx");
+        treeMap.put(5,"xx");
+        System.out.println(treeMap);
     }
     private static int tableSizeFor(int cap) {
         int n = cap - 1;

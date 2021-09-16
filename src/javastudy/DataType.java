@@ -1,6 +1,6 @@
 package javastudy;
 
-public class datatype {
+public class DataType {
     public static void main(String[] args) {
 
         byte a = 120;

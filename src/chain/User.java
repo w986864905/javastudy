@@ -1,8 +1,7 @@
-package ChainProgramming;
+package chain;
 
 import lombok.Builder;
 import lombok.Data;
-import lombok.experimental.Accessors;
 
 /**
  * @author 王品峰

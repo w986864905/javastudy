@@ -1,6 +1,4 @@
-package ChainProgramming;
-
-import java.util.List;
+package chain;
 
 /**
  * @author 王品峰

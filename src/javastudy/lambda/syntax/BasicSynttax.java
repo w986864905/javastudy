@@ -1,6 +1,6 @@
-package javastudy.Lambda.syntax;
+package javastudy.lambda.syntax;
 
-import javastudy.Lambda.functionalInterfaces.*;
+import javastudy.lambda.functionalInterfaces.*;
 
 /**
  * @author 王品峰

@@ -10,7 +10,7 @@ import java.util.*;
  * @DateTime 2020/8/4 10:56
  * @Description
  */
-public class test {
+public class Test {
 
     public static void hello(String name) {
         Date date = new Date();
@@ -128,7 +128,7 @@ public class test {
             if (((List<Object>)obj).isEmpty()){
                 return true;
             }
-            return ((List<Object>)obj).stream().allMatch(test::isEmpty);
+            return ((List<Object>)obj).stream().allMatch(Test::isEmpty);
         }
         for (Field f : obj.getClass().getDeclaredFields()) {
             f.setAccessible(true);

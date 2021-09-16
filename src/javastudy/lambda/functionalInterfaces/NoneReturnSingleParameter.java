@@ -1,4 +1,4 @@
-package javastudy.Lambda.functionalInterfaces;
+package javastudy.lambda.functionalInterfaces;
 
 /**
  * @author wangpinfeng on 2020/7/20.

@@ -38,4 +38,5 @@ public class list {
         Arrays.toString(array1);
 
     }
+
 }
