@@ -1,7 +1,6 @@
 package Leetcode.排序算法;
 
 import Leetcode.common.ArraysUtil;
-import com.spire.xls.Workbook;
 
 import java.nio.charset.StandardCharsets;
 import java.util.*;
@@ -83,9 +82,6 @@ public class LeetCode347前K个高频元素 {
 //        String url = "http://10.19.151.142:9999/group1/M00/0B/39/ChOXkGBlkyuAKoUhAABJf86Jua.png";
 //
 //        base64(url);
-        Workbook wb = new Workbook();
-        wb.loadFromFile("E:\\项目相关文档\\enc-pap-wuhu\\接入源表\\AB01(AB01).xls");
-        wb.saveToFile("E:\\项目相关文档\\enc-pap-wuhu\\接入源表\\AB01(AB01).xlsx");
 
     }
     private static Integer gerThreeSplitIndex(String url){
