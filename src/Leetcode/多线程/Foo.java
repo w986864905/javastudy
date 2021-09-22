@@ -5,9 +5,11 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 class Foo {
 
-    private Semaphore seamFirstTwo = new Semaphore(0);
+//    private Semaphore seamFirstTwo = new Semaphore(0);
 
-    private Semaphore seamTwoSecond = new Semaphore(0);
+//    private Semaphore seamTwoSecond = new Semaphore(0);
+
+    private AtomicInteger firstTwoThree = new AtomicInteger(1);
 
     public Foo() {
 
@@ -18,26 +20,40 @@ class Foo {
 
         // printFirst.run() outputs "first". Do not change or remove this line.
         printFirst.run();
-        seamFirstTwo.release();
+        firstTwoThree.getAndIncrement();
+        //seamFirstTwo.release();
 
     }
 
     public void second(Runnable printSecond) throws InterruptedException {
-        seamFirstTwo.acquire();
-        // printSecond.run() outputs "second". Do not change or remove this line.
-        printSecond.run();
-        seamTwoSecond.release();
+        while (true){
+            if (firstTwoThree.get() == 2){
+                //seamFirstTwo.acquire();
+                // printSecond.run() outputs "second". Do not change or remove this line.
+                printSecond.run();
+                firstTwoThree.getAndIncrement();
+                break;
+                //seamTwoSecond.release();
+            }
+        }
+
+
     }
 
     public void third(Runnable printThird) throws InterruptedException {
-        seamTwoSecond.acquire();
-        // printThird.run() outputs "second". Do not change or remove this line.
-        printThird.run();
-
+        while (true) {
+            if (firstTwoThree.get() == 3) {
+                //seamTwoSecond.acquire();
+                // printThird.run() outputs "second". Do not change or remove this line.
+                printThird.run();
+                break;
+            }
+        }
     }
 
     public static void main(String[] args) {
         Foo foo = new Foo();
+        Long start = System.currentTimeMillis();
         new Thread(() -> {
             try {
                 foo.first(() -> {
@@ -60,6 +76,7 @@ class Foo {
             try {
                 foo.third(() -> {
                     System.out.print("third");
+                    System.out.println(System.currentTimeMillis()-start);
                 });
             } catch (InterruptedException e) {
                 e.printStackTrace();
