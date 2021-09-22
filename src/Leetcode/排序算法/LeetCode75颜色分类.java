@@ -1,8 +1,6 @@
 package Leetcode.排序算法;
 
 import com.google.common.collect.Lists;
-import com.spire.ms.System.Collections.ArrayList;
-import com.spire.ms.System.Collections.ICollection;
 
 import java.util.Arrays;
 import java.util.Collections;
