@@ -13,10 +13,8 @@ import java.util.*;
 public class Test {
 
     public static void hello(String name) {
-        Date date = new Date();
-        long number = 200L;
-        double salary = 6000.0;
-        int count = 1;
+        HashMap<String,String> map = new HashMap<>(4);
+        map.put("1","1");
 
     }
 
@@ -143,21 +141,41 @@ public class Test {
         return true;
     }
     public static void main(String[] args) {
-        String[] res = "11111".split(",");
-        List<String> newList = new ArrayList<>();
-        List<String> oldList = new ArrayList<>(Arrays.asList(res));
-        oldList.add("1");
-        oldList.add("2");
-        oldList.add("3");
-        newList.add("1");
-        newList.add("2");
-        newList.add("4");
-        oldList.retainAll(newList);
-        if (oldList.size() > 0){
-            System.out.println(oldList);
-        }else {
-            System.out.println("无");
+        HashMap<String,String> map = new HashMap<>(4);
+        map.put("1","1");
+        map.put("2","2");
+        map.put("7","3");
+        map.put("4","4");
+        map.put("5","5");
+        map.put("6","6");
+
+        Iterator<Map.Entry<String, String>> entries = map.entrySet().iterator();
+
+        while (entries.hasNext()) {
+
+            Map.Entry<String, String> entry = entries.next();
+
+            System.out.println("Key = " + entry.getKey() + ", Value = " + entry.getValue());
+
         }
+
+
+
+//        String[] res = "11111".split(",");
+//        List<String> newList = new ArrayList<>();
+//        List<String> oldList = new ArrayList<>(Arrays.asList(res));
+//        oldList.add("1");
+//        oldList.add("2");
+//        oldList.add("3");
+//        newList.add("1");
+//        newList.add("2");
+//        newList.add("4");
+//        oldList.retainAll(newList);
+//        if (oldList.size() > 0){
+//            System.out.println(oldList);
+//        }else {
+//            System.out.println("无");
+//        }
 
     }
 
